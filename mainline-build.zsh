@@ -11,12 +11,6 @@ BUILD_VER=$( git describe --tags --always --dirty --match "[0-9A-Z]*.[0-9A-Z]*" 
 MAJOR_VER=$( echo $BUILD_VER | cut -d '-' -f1 )
 echo "This build is version ${BUILD_VER}, and the time is $(date)"
 
-echo "Pulling translations from Transifex"
-set +x
-tx pull --all --force --minimum-perc 80 --resource cataclysm-dda.master-cataclysm-dda
-
-set -x
-
 if [[ -z "${COMPILE_THREAD_COUNT}" ]]; then
     export COMPILE_THREAD_COUNT="1"
 fi
@@ -120,6 +114,11 @@ else
     if [[ -z "${PACKAGE}" ]]; then
         exit 0
     fi
+
+    echo "Pulling translations from Transifex"
+    set +x
+    tx pull --all --force --minimum-perc 80 --resource cataclysm-dda.master-cataclysm-dda
+    set -x
 
     ## ...package...
     make ${DIST}
