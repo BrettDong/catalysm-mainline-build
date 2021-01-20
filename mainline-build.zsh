@@ -116,9 +116,9 @@ else
     fi
 
     echo "Pulling translations from Transifex"
-    set +x
+    set +e
     tx pull --all --force --minimum-perc 80 --resource cataclysm-dda.master-cataclysm-dda
-    set -x
+    set -e
 
     ## ...package...
     make ${DIST}
