@@ -91,6 +91,7 @@ esac
 export CCACHE=1
 export LUA=1
 export LANGUAGES="all"
+export RUNTESTS=0
 
 if [[ -z "${DEBUG}" ]]; then
     export RELEASE=1
